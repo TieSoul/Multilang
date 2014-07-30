@@ -22,16 +22,10 @@ def execute(r):
                 pass
         elif r[j] == ',':
             if inputstring == '':
-                inputstring = input()
-                s[i] = ord(inputstring[0]) if inputstring != '' else ord(' ')
-                inputstring = inputstring[1:]
-            elif len(inputstring) == 2 and not '\n' in inputstring:
-                inputstring += '\n'
+                inputstring = input() + '\n'
                 s[i] = ord(inputstring[0])
-                inputstring = inputstring[1:]
-            else:
-                s[i] = ord(inputstring[0])
-                inputstring = inputstring[1:]
+            s[i] = ord(inputstring[0])
+            inputstring = inputstring[1:]
         elif r[j] == '[':
             if s[i] == 0:
                 loopcount = 1
@@ -41,14 +35,15 @@ def execute(r):
                         loopcount += 1
                     elif r[j] == ']':
                         loopcount -= 1
-            else:
-                loopstack.append(j)
         elif r[j] == ']':
             if s[i] > 0:
-                j = loopstack.pop() - 1
-        else:
-            j += 1
-            continue
+                loopcount = 1
+                while loopcount > 0:
+                    j -= 1
+                    if r[j] == ']':
+                        loopcount += 1
+                    elif r[j] == '[':
+                        loopcount -= 1
         j += 1
 
 
