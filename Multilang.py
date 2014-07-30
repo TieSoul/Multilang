@@ -26,7 +26,7 @@ while True:
                     break
                 except:
                     try:
-                        input()
+                        print()
                     except KeyboardInterrupt:
                         break
                     except:
