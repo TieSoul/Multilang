@@ -13,7 +13,7 @@ print("""
 while True:
     try:
         dir = os.getcwd()
-        a = input(dir + '> ')
+        a = input(dir + '>> ')
         efcode = ''
         bfcode = ''
         bcode = ''
@@ -134,9 +134,11 @@ exit: exit the shell""")
             elif a[2:5].lower() == 'rf ':
                 if os.path.exists(a[5:]):
                     replacefuck.execute(open(a[5:]).read())
+                    print()
             elif a[2:4].lower() == 'r ':
                 if os.path.exists(a[4:]):
                     replacefuck.execute(open(a[4:]).read())
+                    print()
         if efcode != '':
             eitherfuck.execute(efcode)
             print()
