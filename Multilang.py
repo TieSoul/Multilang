@@ -1,5 +1,5 @@
 from __future__ import print_function
-import befunge_exec as befunge, brainfuck, replacefuck, eitherfuck, rand as random, os
+import befunge_exec as bf, brainfuck as b, replacefuck as rf, eitherfuck as ef, rand as r, os
 print("""
 +-----------------------------------+
 |     Multilang esoteric shell      |
@@ -10,19 +10,18 @@ print("""
 |           are supported.          |
 +-----------------------------------+"""
 )
+dir = os.getcwd()
 while True:
     try:
-        dir = os.getcwd()
-        a = input(dir + '>> ')
-        efcode = ''
-        bfcode = ''
-        bcode = ''
-        rfcode = ''
-        rcode = ''
-        if a.lower() == 'ef':
+        c = input(dir + '>> ')
+        a = c.split()
+        langs = ['ef', 'bf', 'b', 'rf', 'r']
+        for i in langs:
+            exec("%scode = ''" % i)
+        if c.lower() in langs:
             while True:
                 try:
-                    efcode += input('ef> ')
+                    exec("%scode = %scode + input('%s> ') + '\\n'" % (c.lower(), c.lower(), c.lower()))
                 except KeyboardInterrupt:
                     break
                 except:
@@ -32,128 +31,41 @@ while True:
                         break
                     except:
                         print("An error occurred.")
-        elif a[:3].lower() == 'ef ':
-            efcode = a[3:]
-        if a.lower() == 'bf':
-            while True:
-                try:
-                    bfcode += input('bf> ') + '\n'
-                except KeyboardInterrupt:
-                    break
-                except:
-                    try:
-                        input()
-                    except KeyboardInterrupt:
-                        break
-                    except:
-                        print("An error occurred.")
-        elif a[:3].lower() == 'bf ':
-            bfcode = a[3:]
-        if a.lower() == 'b':
-            while True:
-                try:
-                    bcode += input('b> ')
-                except KeyboardInterrupt:
-                    break
-                except:
-                    try:
-                        input()
-                    except KeyboardInterrupt:
-                        break
-                    except:
-                        print("An error occurred.")
-        elif a[:2].lower() == 'b ':
-            bcode = a[2:]
-        if a.lower() == 'rf':
-            while True:
-                try:
-                    rfcode += input('rf> ') + '\n'
-                except KeyboardInterrupt:
-                    break
-                except:
-                    try:
-                        input()
-                    except KeyboardInterrupt:
-                        break
-                    except:
-                        print("An error occurred.")
-        if a.lower() == 'r':
-            while True:
-                try:
-                    rcode += input('r> ')
-                except KeyboardInterrupt:
-                    break
-                except:
-                    try:
-                        input()
-                    except KeyboardInterrupt:
-                        break
-                    except:
-                        print("An error occurred.")
-        elif a[:2].lower() == 'r ':
-            rcode = a[2:]
-        elif a[:4].lower() == 'exit':
+        elif a[0].lower() in langs:
+            exec("%scode = c[len(a[0])+1:]" % a[0].lower())
+        elif a[0].lower() == 'exit':
             break
-        elif a[:4].lower() == 'help':
+        elif a[0].lower() == 'help':
             print("""List of commands:
-bf <befunge code>: execute befunge-98 code
-bf: enter befunge-98 environment
-b <brainfuck code>: execute brainfuck code
-b: enter brainfuck environment
-rf: enter replacefuck environment
-ef <eitherfuck code>: execute eitherfuck code
-ef: enter eitherfuck environment
-r <random code>: execute random code
-r: enter random environment
+<programming language> <code>: execute code in programming language
+<programming language>: enter code environment for programming language
 cd: go to directory
 dir: list files
 f <programming language> <file>: execute file in programming language
 ctrl+C: exit an environment and execute code
-exit: exit the shell""")
-        elif a[:3].lower() == 'cd ':
+exit: exit the shell
+
+List of languages:
+bf - befunge
+b  - brainfuck
+rf - replacefuck
+ef - eitherfuck
+r  - random""")
+        elif a[0].lower() == 'cd':
             try:
-                os.chdir(a[3:])
+                os.chdir(c[3:])
             except:
                 pass
             dir = os.getcwd()
-        elif a.lower() == 'dir':
+        elif c.lower() == 'dir':
             os.system('dir')
-        elif a[:2].lower() == 'f ':
-            if a[2:4].lower() == 'b ':
-                if os.path.exists(a[4:]):
-                    brainfuck.execute(open(a[4:]).read())
+        elif a[0].lower() == 'f':
+            if a[1].lower() in langs:
+                if os.path.exists(a[2]):
+                    exec("%s.execute(open(a[2]).read())" % a[1].lower())
                     print()
-            elif a[2:5].lower() == 'bf ':
-                if os.path.exists(a[5:]):
-                    befunge.execute(open(a[5:]).read())
-                    print()
-            elif a[2:5].lower() == 'ef ':
-                if os.path.exists(a[5:]):
-                    eitherfuck.execute(open(a[5:]).read())
-                    print()
-            elif a[2:5].lower() == 'rf ':
-                if os.path.exists(a[5:]):
-                    replacefuck.execute(open(a[5:]).read())
-                    print()
-            elif a[2:4].lower() == 'r ':
-                if os.path.exists(a[4:]):
-                    replacefuck.execute(open(a[4:]).read())
-                    print()
-        if efcode != '':
-            eitherfuck.execute(efcode)
-            print()
-        if bfcode != '':
-            befunge.execute(bfcode)
-            print()
-        if bcode != '':
-            brainfuck.execute(bcode)
-            print()
-        if rfcode != '':
-            replacefuck.execute(rfcode)
-            print()
-        if rcode != '':
-            random.execute(rcode)
-            print()
+        for i in langs:
+            exec("if %scode != '': %s.execute(%scode); print()" % (i, i, i))
     except KeyboardInterrupt:
         pass
     except:
