@@ -1,6 +1,6 @@
 from __future__ import print_function
 import befunge_exec as bf, brainfuck as b, replacefuck as rf, eitherfuck as ef, rand as r, Whirl as wh, Befunk as bk,\
-       os
+       SNUSP as sn, os
 try:
     from PIL import Image
     has_PIL = True
@@ -13,7 +13,7 @@ print("""
 |  Replacefuck (rf), Befunge (bf),  |
 |  Brainfuck (b), Eitherfuck (ef),  |
 |      Random (r), Whirl (wh),      |
-|            Befunk (bk)            |
+|      Befunk (bk), SNUSP (sn)      |
 |           are supported.          |
 +-----------------------------------+"""
 )
@@ -22,7 +22,7 @@ while True:
     try:
         c = input(dir + '>> ')
         a = c.split()
-        langs = ['ef', 'bf', 'b', 'rf', 'r', 'wh']
+        langs = ['ef', 'bf', 'b', 'rf', 'r', 'wh', 'sn']
         nontexts = ['bk']
         for i in langs:
             exec("%scode = ''" % i)
@@ -60,6 +60,7 @@ rf - replacefuck
 ef - eitherfuck
 r  - random
 wh - whirl
+sn - SNUSP (modular)
 
 NOTE: The following languages are non-textual and cannot be used outside of f.
 bk - befunk""")
