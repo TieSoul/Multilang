@@ -1,3 +1,6 @@
+from __future__ import print_function
+
+
 def execute(string):
     string = list(string)
     loopcount = 0
