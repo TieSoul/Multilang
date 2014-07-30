@@ -1,6 +1,6 @@
 from __future__ import print_function
 import befunge_exec as bf, brainfuck as b, replacefuck as rf, eitherfuck as ef, rand as r, Whirl as wh, Befunk as bk,\
-       SNUSP as sn, binaryfuck as bi, headsecks as hd, os
+       SNUSP as sn, binaryfuck as bi, headsecks as hd, Braincopter as bc, os
 try:
     from PIL import Image
     has_PIL = True
@@ -13,7 +13,8 @@ print("""
 |  Replacefuck (rf), Befunge (bf),  |
 |  Brainfuck (b), Eitherfuck (ef),  |
 |      Random (r), Whirl (wh),      |
-|      Befunk (bk), SNUSP (sn)      |
+|      Befunk (bk), SNUSP (sn),     |
+|            Braincopter (bc)       |
 |           are supported.          |
 +-----------------------------------+"""
 )
@@ -23,7 +24,7 @@ while True:
         c = input(dir + '>> ')
         a = c.split()
         langs = ['ef', 'bf', 'b', 'rf', 'r', 'wh', 'sn', 'bi', 'hd']
-        nontexts = ['bk']
+        nontexts = ['bk', 'bc']
         for i in langs:
             exec("%scode = ''" % i)
         if c.lower() in langs:

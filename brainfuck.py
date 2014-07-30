@@ -2,6 +2,7 @@ from __future__ import print_function
 
 
 def execute(r):
+    r = ''.join([i for i in r if i in ['>', '<', '+', '-', '.', ',', '[', ']']])
     s = [0]
     i = 0
     inputstring = ''
@@ -15,13 +16,13 @@ def execute(r):
         elif r[j] == '<':
             i -= 1
         elif r[j] == '+':
-            s[i] = min(s[i] + 1, 0x110000)
+            s[i] += 1
         elif r[j] == '-':
             s[i] = max(s[i] - 1, 0)
         elif r[j] == '.':
             try:
                 print(chr(s[i]), end="")
-            except ValueError:
+            except:
                 pass
         elif r[j] == ',':
             if inputstring == '':
