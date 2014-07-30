@@ -1,6 +1,6 @@
 from __future__ import print_function
 import befunge_exec as bf, brainfuck as b, replacefuck as rf, eitherfuck as ef, rand as r, Whirl as wh, Befunk as bk,\
-       SNUSP as sn, os
+       SNUSP as sn, binaryfuck as bi, headsecks as hd, os
 try:
     from PIL import Image
     has_PIL = True
@@ -22,7 +22,7 @@ while True:
     try:
         c = input(dir + '>> ')
         a = c.split()
-        langs = ['ef', 'bf', 'b', 'rf', 'r', 'wh', 'sn']
+        langs = ['ef', 'bf', 'b', 'rf', 'r', 'wh', 'sn', 'bi', 'hd']
         nontexts = ['bk']
         for i in langs:
             exec("%scode = ''" % i)
