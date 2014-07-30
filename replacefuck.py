@@ -1,3 +1,6 @@
+from __future__ import print_function
+
+
 def execute(string):
     debug = False
     program = [i for i in list(string[string.index("PROG:")+5:]) if i != '\n']

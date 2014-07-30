@@ -1,3 +1,4 @@
+from __future__ import print_function
 from random import choice  # Used for ? instruction
 from time import sleep  # Used for Visual mode
 import getopt  # Used in another version of this code

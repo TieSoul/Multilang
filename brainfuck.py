@@ -1,3 +1,6 @@
+from __future__ import print_function
+
+
 def execute(r):
     s = [0]
     i = 0
