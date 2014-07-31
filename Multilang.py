@@ -1,6 +1,6 @@
 from __future__ import print_function
 import befunge_exec as bf, brainfuck as b, replacefuck as rf, eitherfuck as ef, rand as r, Whirl as wh, Befunk as bk,\
-       SNUSP as sn, binaryfuck as bi, headsecks as hd, Braincopter as bc, os
+       SNUSP as sn, binaryfuck as bi, headsecks as hd, Braincopter as bc, ABC as abc, os
 try:
     from PIL import Image
     has_PIL = True
@@ -14,7 +14,7 @@ print("""
 |  Brainfuck (b), Eitherfuck (ef),  |
 |      Random (r), Whirl (wh),      |
 |      Befunk (bk), SNUSP (sn),     |
-|            Braincopter (bc)       |
+|    Braincopter (bc), ABC (abc)    |
 |           are supported.          |
 +-----------------------------------+"""
 )
@@ -23,7 +23,7 @@ while True:
     try:
         c = input(dir + '>> ')
         a = c.split()
-        langs = ['ef', 'bf', 'b', 'rf', 'r', 'wh', 'sn', 'bi', 'hd']
+        langs = ['ef', 'bf', 'b', 'rf', 'r', 'wh', 'sn', 'bi', 'hd', 'abc']
         nontexts = ['bk', 'bc']
         for i in langs:
             exec("%scode = ''" % i)
@@ -55,7 +55,7 @@ ctrl+C: exit an environment and execute code
 exit: exit the shell
 
 List of languages:
-bf - befunge
+bf - befunge-98
 b  - brainfuck
 rf - replacefuck
 ef - eitherfuck
@@ -64,7 +64,8 @@ wh - whirl
 sn - SNUSP (modular)
 
 NOTE: The following languages are non-textual and cannot be used outside of f.
-bk - befunk""")
+bk - befunk
+bc - braincopter""")
         elif a[0].lower() == 'cd':
             try:
                 os.chdir(c[3:])
