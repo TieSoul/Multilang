@@ -51,4 +51,4 @@ def execute(r):
 
 
 if __name__ == '__main__':
-    execute(open("LostKng.b").read())
+    execute(input("Enter Brainfuck code:\n"))
