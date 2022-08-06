@@ -964,7 +964,7 @@ if __name__ == '__main__':
     while not good:
         try:
             f = input("Enter befunge filename (include file extension)\n")
-            open(f)
+            open(f, encoding="utf-8")
             good = True
         except:
             print("Enter a valid file name.\n")
@@ -1013,4 +1013,4 @@ if __name__ == '__main__':
                 good = True
             except:
                 print("Please enter 'y', 'n', 'yes', or 'no'.")
-    execute(open(f).read())
+    execute(open(f, encoding="utf-8").read())
