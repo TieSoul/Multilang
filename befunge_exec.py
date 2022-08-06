@@ -566,7 +566,7 @@ def move(x, y):  # Moving and wrapping. The wrapping algorithm is called Lahey-S
     global m, delta
     if x + delta[1] not in range(0, len(m[y])) or y + delta[0] not in range(0, len(m)):
         delta = [-x for x in delta]
-        while x + delta[1] in range(0, len(m[y])) and y + delta[0] in range(0, len(m[y])):
+        while x + delta[1] in range(0, len(m[y])) and y + delta[0] in range(0, len(m)):
             x += delta[1]
             y += delta[0]
         delta = [-x for x in delta]
@@ -964,7 +964,7 @@ if __name__ == '__main__':
     while not good:
         try:
             f = input("Enter befunge filename (include file extension)\n")
-            open(f)
+            open(f, encoding="utf-8")
             good = True
         except:
             print("Enter a valid file name.\n")
@@ -1013,4 +1013,4 @@ if __name__ == '__main__':
                 good = True
             except:
                 print("Please enter 'y', 'n', 'yes', or 'no'.")
-    execute(open(f).read())
+    execute(open(f, encoding="utf-8").read())
